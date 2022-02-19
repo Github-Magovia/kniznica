@@ -35,8 +35,8 @@ public class CustomersController {
     // Create -POST
     @PostMapping("/api/customers")
     public String createCustomer(@RequestBody Customers customer){
+        customer.setId(customers.size());
         this.customers.add(customer);
-
         return "Customer s id: " + (this.customers.size() -1) +" vytvorený";
     }
 
@@ -74,7 +74,17 @@ public class CustomersController {
     // DELETE customers
     @DeleteMapping("/api/customers/{customerId}")
     public void deleteCustomer(@PathVariable  Integer customerId) {
-        this.customers.remove(this.customers.get(customerId));
+        decrementIds(customerId);
+        this.customers.remove(customerId.intValue());
+
+    }
+    // decrement id of customer
+    private void decrementIds(int id){
+        int size = customers.size();
+        int customerId = id + 1;
+        while(customerId < size) {
+            customers.get(customerId++).decrementId();
+        }
 
     }
 }
