@@ -21,6 +21,7 @@ public class CustomersController {
         customer1.setFirstName("Janko");
         customer1.setLastName("Malý");
         customer1.setEmail("j.maly@example.com");
+        customer1.setId(0);
         customers.add(customer1);
 
 
@@ -28,6 +29,7 @@ public class CustomersController {
         customer2.setFirstName("Peter");
         customer2.setLastName("Veľký");
         customer2.setEmail("p.velky@example.com");
+        customer2.setId(1);
         customers.add(customer2);
         return customers;
     }
