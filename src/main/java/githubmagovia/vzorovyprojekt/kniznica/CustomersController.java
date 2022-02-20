@@ -8,14 +8,14 @@ import java.util.List;
 @RestController
 public class CustomersController {
 
-    private List<Customers> customers;
+    public static List<Customers> customers;
 
     public CustomersController() {
-        this.customers = init();
+        customers = init();
     }
 
     private List<Customers> init() {
-        this.customers = new ArrayList<>();
+        customers = new ArrayList<>();
 
         Customers customer1 = new Customers();
         customer1.setFirstName("Janko");
@@ -38,8 +38,8 @@ public class CustomersController {
     @PostMapping("/api/customers")
     public String createCustomer(@RequestBody Customers customer){
         customer.setId(customers.size());
-        this.customers.add(customer);
-        return "Customer s id: " + (this.customers.size() -1) +" vytvorený";
+        customers.add(customer);
+        return "Customer s id: " + (customers.size() -1) +" vytvorený";
     }
 
 
@@ -48,7 +48,7 @@ public class CustomersController {
     @GetMapping("/api/customers")
     public List<Customers> getAllCustomers(@RequestParam(required = false) String lastname) {
         if(lastname == null) {
-            return this.customers;
+            return customers;
         }
         List<Customers> filteredCustomers = new ArrayList<>();
         for (Customers customers : customers) {
@@ -62,22 +62,22 @@ public class CustomersController {
     //GET - podla idcka
     @RequestMapping("/api/customers/{customerId}")
     public Customers getCustomerById(@PathVariable Integer customerId) {
-        return this.customers.get(customerId);
+        return customers.get(customerId);
     }
 
     // UPDATE customer
     @PutMapping("/api/customers/{customerId}")
-    public void updateCustomer(@PathVariable Integer customerId, @RequestBody Customers customers) {
-        this.customers.get(customerId).setFirstName(customers.getFirstName());
-        this.customers.get(customerId).setLastName(customers.getLastName());
-        this.customers.get(customerId).setEmail(customers.getEmail());
+    public void updateCustomer(@PathVariable Integer customerId, @RequestBody Customers customer) {
+        customers.get(customerId).setFirstName(customer.getFirstName());
+        customers.get(customerId).setLastName(customer.getLastName());
+        customers.get(customerId).setEmail(customer.getEmail());
     }
 
     // DELETE customers
     @DeleteMapping("/api/customers/{customerId}")
     public void deleteCustomer(@PathVariable  Integer customerId) {
         decrementIds(customerId);
-        this.customers.remove(customerId.intValue());
+        customers.remove(customerId.intValue());
 
     }
     // decrement id of customer

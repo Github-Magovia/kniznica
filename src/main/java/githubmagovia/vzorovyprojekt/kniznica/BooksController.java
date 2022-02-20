@@ -1,5 +1,6 @@
 package githubmagovia.vzorovyprojekt.kniznica;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -7,9 +8,9 @@ import java.util.List;
 
 @RestController
 public class BooksController {
-    private final List<Book> books;
+    public static List<Book> books;
 
-    public BooksController() { this.books = init(); }
+    public BooksController() { books = init(); }
 
     private List<Book> init() { return new ArrayList<>(); }
 
@@ -17,13 +18,13 @@ public class BooksController {
     @PostMapping("/api/books")
     public void createBook(@RequestBody Book book) {
         book.setId(books.size());
-        this.books.add(book);
+        books.add(book);
     }
 
     //List all book titles
     @GetMapping("/api/books")
     public List<Book> getBooks(@RequestParam(required = false) String name) {
-        if (name == null) { return this.books; }
+        if (name == null) { return books; }
         List<Book> filteredList = new ArrayList<>();
         for (Book book : books) {
             if (book.getName().equals(name)) { filteredList.add(book); }
@@ -33,7 +34,7 @@ public class BooksController {
 
     //Get book title by id
     @GetMapping("/api/books/{id}")
-    public Book getBook(@PathVariable Integer id) { return this.books.get(id); }
+    public Book getBook(@PathVariable Integer id) { return books.get(id); }
 
     //Update book title
     @PutMapping("/api/books/{id}")
@@ -51,7 +52,7 @@ public class BooksController {
     @DeleteMapping("/api/books/{id}")
     public void deleteBook(@PathVariable Integer id) {
         decrementIds(id);
-        this.books.remove(id.intValue());
+        books.remove(id.intValue());
     }
 
     //Decrement id of every book in the list after the removed book
