@@ -1,7 +1,6 @@
 package githubmagovia.vzorovyprojekt.kniznica;
 
 public class Customers {
-
     private int id;
     private String firstName;
     private String lastName;
