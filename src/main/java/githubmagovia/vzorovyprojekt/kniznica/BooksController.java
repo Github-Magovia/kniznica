@@ -1,6 +1,5 @@
 package githubmagovia.vzorovyprojekt.kniznica;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
