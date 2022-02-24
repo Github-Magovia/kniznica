@@ -7,11 +7,11 @@ import java.util.List;
 
 @Service
 public class CustomersService {
-
-    public static List<Customers> customers;
+    private int idCounter = 0;
+    private List<Customers> customers;
 
     public CustomersService() {
-         customers = init();
+        customers = init();
     }
 
     private List<Customers> init() {
@@ -21,27 +21,24 @@ public class CustomersService {
         customer1.setFirstName("Janko");
         customer1.setLastName("Malý");
         customer1.setEmail("j.maly@example.com");
-        customer1.setId(0);
+        customer1.setId(idCounter++);
         customers.add(customer1);
-
 
         Customers customer2 = new Customers();
         customer2.setFirstName("Peter");
         customer2.setLastName("Veľký");
         customer2.setEmail("p.velky@example.com");
-        customer2.setId(1);
+        customer2.setId(idCounter++);
         customers.add(customer2);
         return customers;
     }
 
     // Create
     public String createCustomer(Customers customer){
-        customer.setId(customers.size());
+        customer.setId(idCounter++);
         customers.add(customer);
-        return "Customer s id: " + (customers.size() -1) +" vytvorený";
+        return "Customer s id: " + (idCounter - 1) +" vytvorený";
     }
-
-
 
     //GET - všetci
     public List<Customers> getAllCustomers(String lastname) {
@@ -55,33 +52,28 @@ public class CustomersService {
             }
         }
         return filteredCustomers;
+    }
 
-    }
     //GET by id
-    public Customers getCustomerById(Integer customerId) {
-        return customers.get(customerId);
-    }
+    public Customers getCustomerById(Integer customerId) { return findCustomer(customerId); }
 
     // UPDATE customer
     public void updateCustomer(Integer customerId, Customers customer) {
-        customers.get(customerId).setFirstName(customer.getFirstName());
-        customers.get(customerId).setLastName(customer.getLastName());
-        customers.get(customerId).setEmail(customer.getEmail());
+        Customers c = findCustomer(customerId);
+        if (c != null) {
+            c.setFirstName(customer.getFirstName());
+            c.setLastName(customer.getLastName());
+            c.setEmail(customer.getEmail());
+        }
     }
 
     // DELETE customers
-    public void deleteCustomer(Integer customerId) {
-        decrementIds(customerId);
-        customers.remove(customerId.intValue());
+    public void deleteCustomer(Integer customerId) { customers.remove(findCustomer(customerId)); }
 
-    }
-    // decrement id of customer
-    private void decrementIds(int id){
-        int size = customers.size();
-        int customerId = id + 1;
-        while(customerId < size) {
-            customers.get(customerId++).decrementId();
+    private Customers findCustomer(int id) {
+        for (Customers c : customers) {
+            if (c.getId() == id) { return c; }
         }
-
+        return null;
     }
 }
