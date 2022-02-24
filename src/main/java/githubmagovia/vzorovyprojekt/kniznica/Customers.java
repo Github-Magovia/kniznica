@@ -6,9 +6,7 @@ public class Customers {
     private String lastName;
     private String email;
 
-    public void decrementId() {
-        this.id--;
-    }
+
 
     public String getFirstName() {
         return firstName;
