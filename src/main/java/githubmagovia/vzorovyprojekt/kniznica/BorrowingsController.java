@@ -11,8 +11,12 @@ public class BorrowingsController {
     public BorrowingsController(BorrowingService borrowingService) { this.borrowingService = borrowingService; }
 
     //get list of borrowings
-    @GetMapping("/api/borrowings")
+    @GetMapping("/api/borrowing")
     public List<Borrowing> getBorrowings() { return borrowingService.getBorrowings(); }
+
+    //get list of formatted borrowings
+    @GetMapping("/api/borrowings")
+    public List<BorrowingBody> getBorrowingBodies() { return borrowingService.getBorrowingBodies(); }
 
     //post borrowing
     @PostMapping("/api/borrowings")
@@ -20,7 +24,7 @@ public class BorrowingsController {
 
     //get borrowing by id
     @GetMapping("api/borrowings/{borrowingId}")
-    public Borrowing getBorrowing(@PathVariable Integer borrowingId) { return borrowingService.getBorrowing(borrowingId); }
+    public BorrowingBody getBorrowing(@PathVariable Integer borrowingId) { return borrowingService.getBorrowing(borrowingId); }
 
     //delete borrowing
     @DeleteMapping("api/borrowings/{borrowingId}")

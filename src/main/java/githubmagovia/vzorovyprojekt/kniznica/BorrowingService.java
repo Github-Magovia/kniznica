@@ -23,23 +23,25 @@ public class BorrowingService {
     //get list of borrowings
     public List<Borrowing> getBorrowings() { return this.borrowings; }
 
+    //get list of borrowings
+    public List<BorrowingBody> getBorrowingBodies() {
+        List<BorrowingBody> bodyList = new ArrayList<>(borrowings.size());
+        for (Borrowing b : borrowings) { bodyList.add(transformToBody(b)); }
+        return bodyList;
+    }
+
     //post borrowing
     public Integer createBorrowing(Borrowing request) {
         Borrowing borrowing = new Borrowing();
-        Customers customer = customersService.getCustomerById(request.getCustomerId());
-        Book book = booksService.getBook(request.getBookId());
         borrowing.setId(idCounter++);
         borrowing.setCustomerId(request.getCustomerId());
         borrowing.setBookId(request.getBookId());
-        borrowing.setCustomerName(customer.getFirstName() + " " + customer.getLastName());
-        borrowing.setTitle(book.getName());
-        borrowing.setAuthorName(book.getAuthorFirstName() + " " + book.getAuthorLastName());
         this.borrowings.add(borrowing);
         return borrowing.getId();
     }
 
     //get borrowing by id
-    public Borrowing getBorrowing(Integer borrowingId) { return findBorrowing(borrowingId); }
+    public BorrowingBody getBorrowing(Integer borrowingId) { return transformToBody(findBorrowing(borrowingId)); }
 
     //delete borrowing
     public void deleteBorrowing(Integer borrowingId){ borrowings.remove(findBorrowing(borrowingId)); }
@@ -49,5 +51,16 @@ public class BorrowingService {
             if (b.getId() == id) { return b; }
         }
         return null;
+    }
+
+    // transforms Borrowing into BorrowingBody and sets its values
+    private BorrowingBody transformToBody(Borrowing borrowing) {
+        BorrowingBody body = new BorrowingBody(borrowing);
+        Customers customer = customersService.getCustomerById(body.getCustomerId());
+        Book book = booksService.getBook(body.getBookId());
+        body.setCustomerName(customer.getFirstName() + " " + customer.getLastName());
+        body.setTitle(book.getName());
+        body.setAuthorName(book.getAuthorFirstName() + " " + book.getAuthorLastName());
+        return body;
     }
 }
