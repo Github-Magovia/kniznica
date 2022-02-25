@@ -2,20 +2,31 @@ package githubmagovia.vzorovyprojekt.kniznica;
 
 public class Borrowing {
     private int id;
-    private Book book;
-    private Customers borrower;
+    private int customerId;
+    private int bookId;
 
-    public void setId(int id) { this.id = id;}
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public void decrementId() { this.id--; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public Book getBook() { return book; }
+    public int getCustomerId() {
+        return customerId;
+    }
 
-    public void setBook(Book book) { this.book = book; }
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
-    public Customers getBorrower() { return borrower; }
+    public int getBookId() {
+        return bookId;
+    }
 
-    public void setBorrower(Customers borrower) { this.borrower = borrower; }
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
 }

@@ -2,51 +2,31 @@ package githubmagovia.vzorovyprojekt.kniznica;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static githubmagovia.vzorovyprojekt.kniznica.BooksController.books;
-import static githubmagovia.vzorovyprojekt.kniznica.CustomersController.customers;
 
 @RestController
 public class BorrowingsController {
-    private final List<Borrowing> borrowings;
-    
-    public BorrowingsController(){
-        this.borrowings = init();
-    }
+    private final BorrowingService borrowingService;
 
-    private List<Borrowing> init() { return new ArrayList<>(); }
+    public BorrowingsController(BorrowingService borrowingService) { this.borrowingService = borrowingService; }
 
     //get list of borrowings
+    @GetMapping("/api/raw-borrowings")
+    public List<Borrowing> getBorrowings() { return borrowingService.getBorrowings(); }
+
+    //get list of formatted borrowings
     @GetMapping("/api/borrowings")
-    public List<Borrowing> getAllBorrowings() { return this.borrowings; }
+    public List<BorrowingBody> getBorrowingBodies() { return borrowingService.getBorrowingBodies(); }
 
     //post borrowing
     @PostMapping("/api/borrowings")
-    public void createBook(@RequestBody BorrowingRequest request) {
-        Borrowing borrowing = new Borrowing();
-        borrowing.setBook(books.get(request.bookId));
-        borrowing.setBorrower(customers.get(request.customerId));
-        borrowing.setId(borrowings.size());
-        this.borrowings.add(borrowing);
-    }
+    public Integer createBorrowing(@RequestBody Borrowing request) { return borrowingService.createBorrowing(request); }
 
     //get borrowing by id
     @GetMapping("api/borrowings/{borrowingId}")
-    public Borrowing getBorrowing(@PathVariable Integer borrowingId) { return this.borrowings.get(borrowingId); }
+    public BorrowingBody getBorrowing(@PathVariable Integer borrowingId) { return borrowingService.getBorrowing(borrowingId); }
 
     //delete borrowing
     @DeleteMapping("api/borrowings/{borrowingId}")
-    public void deleteBorrowing(@PathVariable Integer borrowingId){
-        decrementIds(borrowingId);
-        this.borrowings.remove(this.borrowings.get(borrowingId));
-    }
-
-    //decrement id of borrowing
-    private void decrementIds(int id) {
-        int size = borrowings.size();
-        int borrowingID = id + 1;
-        while (borrowingID < size) { borrowings.get(borrowingID++).decrementId(); }
-    }
+    public void deleteBorrowing(@PathVariable Integer borrowingId){ borrowingService.deleteBorrowing(borrowingId); }
 }
