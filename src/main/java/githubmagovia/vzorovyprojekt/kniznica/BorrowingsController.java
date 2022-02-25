@@ -11,7 +11,7 @@ public class BorrowingsController {
     public BorrowingsController(BorrowingService borrowingService) { this.borrowingService = borrowingService; }
 
     //get list of borrowings
-    @GetMapping("/api/borrowing")
+    @GetMapping("/api/raw-borrowings")
     public List<Borrowing> getBorrowings() { return borrowingService.getBorrowings(); }
 
     //get list of formatted borrowings
