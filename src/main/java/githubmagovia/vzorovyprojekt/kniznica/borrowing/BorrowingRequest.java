@@ -1,4 +1,4 @@
-package githubmagovia.vzorovyprojekt.kniznica;
+package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
 public class BorrowingRequest {
     public int bookId;

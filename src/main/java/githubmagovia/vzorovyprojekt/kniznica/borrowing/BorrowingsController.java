@@ -1,4 +1,4 @@
-package githubmagovia.vzorovyprojekt.kniznica;
+package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
 import org.springframework.web.bind.annotation.*;
 
