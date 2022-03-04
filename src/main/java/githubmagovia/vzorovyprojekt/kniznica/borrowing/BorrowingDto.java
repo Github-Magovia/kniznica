@@ -1,32 +1,27 @@
 package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
-public class BorrowingBody {
-    private int id;
-    private int customerId;
+
+public class BorrowingDto {
+    private Long id;
+    private Long customerId;
     private String customerName;
-    private int bookId;
+    private Long bookId;
     private String authorName;
     private String title;
 
-    public BorrowingBody(Borrowing b) {
-        this.id = b.getId();
-        this.customerId = b.getCustomerId();
-        this.bookId = b.getBookId();
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
@@ -38,11 +33,11 @@ public class BorrowingBody {
         this.customerName = customerName;
     }
 
-    public int getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
 

@@ -1,5 +1,6 @@
 package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
+@Deprecated
 public class Borrowing {
     private int id;
     private int customerId;
