@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface BorrowingRepository extends JpaRepository<BorrowingEntity, Integer> {
+public interface BorrowingRepository extends JpaRepository<BorrowingEntity, Long> {
 }
