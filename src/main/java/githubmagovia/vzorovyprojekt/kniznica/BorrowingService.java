@@ -1,5 +1,7 @@
 package githubmagovia.vzorovyprojekt.kniznica;
 
+import githubmagovia.vzorovyprojekt.kniznica.customer.Customers;
+import githubmagovia.vzorovyprojekt.kniznica.customer.CustomersService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

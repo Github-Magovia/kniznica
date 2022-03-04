@@ -1,4 +1,4 @@
-package githubmagovia.vzorovyprojekt.kniznica;
+package githubmagovia.vzorovyprojekt.kniznica.customer;
 
 public class Customers {
     private int id;
