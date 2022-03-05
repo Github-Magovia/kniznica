@@ -1,8 +1,6 @@
 package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
-import githubmagovia.vzorovyprojekt.kniznica.Book;
 import githubmagovia.vzorovyprojekt.kniznica.BooksService;
-import githubmagovia.vzorovyprojekt.kniznica.Customers;
 import githubmagovia.vzorovyprojekt.kniznica.CustomersService;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +31,11 @@ public class BorrowingService {
     }
 
     //get borrowing by id
-    public BorrowingEntity getBorrowingById(Integer borrowingId) {
+    public BorrowingEntity getBorrowingById(Long borrowingId) {
         Optional<BorrowingEntity> borrowing = borrowingRepository.findById(borrowingId);
         return borrowing.orElse(null);
     }
 
     //delete borrowing
-    public void deleteBorrowing(Integer borrowingId){ borrowingRepository.deleteById(borrowingId); }
+    public void deleteBorrowing(Long borrowingId){ borrowingRepository.deleteById(borrowingId); }
 }

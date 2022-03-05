@@ -28,20 +28,20 @@ public class BorrowingsController {
 
     //get borrowing by id
     @GetMapping("api/borrowings/{borrowingId}")
-    public BorrowingDto getBorrowingById(@PathVariable Integer borrowingId) {
+    public BorrowingDto getBorrowingById(@PathVariable Long borrowingId) {
         return mapToDto(borrowingService.getBorrowingById(borrowingId));
     }
 
     //delete borrowing
     @DeleteMapping("api/borrowings/{borrowingId}")
-    public void deleteBorrowing(@PathVariable Integer borrowingId){ borrowingService.deleteBorrowing(borrowingId); }
+    public void deleteBorrowing(@PathVariable Long borrowingId){ borrowingService.deleteBorrowing(borrowingId); }
 
     //maps BorrowingEntity into BorrowingDto
     private BorrowingDto mapToDto(BorrowingEntity entity) {
         BorrowingDto borrowingDto = new BorrowingDto();
-        BookEntity book = borrowing.getBook();
-        CustomersEntity customer = borrowing.getCustomer();
-        borrowingDto.setId(borrowing.getId());
+        BookEntity book = entity.getBook();
+        CustomersEntity customer = entity.getCustomer();
+        borrowingDto.setId(entity.getId());
         borrowingDto.setCustomerId(customer.getId());
         borrowingDto.setCustomerName(customer.getFirstName() + " " + customer.getLastName());
         borrowingDto.setBookId(book.getId());
