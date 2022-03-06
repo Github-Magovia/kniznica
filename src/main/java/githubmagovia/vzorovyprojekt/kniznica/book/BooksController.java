@@ -14,9 +14,9 @@ public class BooksController {
         this.booksService = booksService;
     }
 
-    //Create
+    //Create - POST
     @PostMapping("/api/books")
-    public BookEntity bookEntity(@RequestBody Book book) {
+    public BookEntity createBook(@RequestBody Book book) {
         return booksService.createBook(book);
     }
 
@@ -37,26 +37,24 @@ public class BooksController {
 
     //Update
     @PutMapping("/api/books/{id}")
-    public void updateBook(@PathVariable Long bookId, @RequestBody Book book) {
-        booksService.updateBook(bookId,book);
+    public void updateBook(@PathVariable Long id, @RequestBody Book book) {
+        booksService.updateBook(id,book);
     }
 
     //Delete
     @DeleteMapping("/api/books/{id}")
-    public void deleteBook(@PathVariable Long bookId) {
-        booksService.deleteBook(bookId);
+    public void deleteBook(@PathVariable Long id) {
+        booksService.deleteBook(id);
     }
 
     private BookDto mapToDto(BookEntity entity){
         BookDto bookDto = new BookDto();
         bookDto.setId(entity.getId());
-        bookDto.setName(entity.getName());
+        bookDto.setTitle(entity.getTitle());
+        bookDto.setName(entity.getAuthorFirstName() + " " + entity.getAuthorLastName());
         bookDto.setIsbn(entity.getIsbn());
-        bookDto.setAuthorFirstName(entity.getAuthorFirstName());
-        bookDto.setAuthorLastName(entity.getAuthorLastName());
         bookDto.setBookCount(entity.getBookCount());
         return bookDto;
     }
-
 }
 

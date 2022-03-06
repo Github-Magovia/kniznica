@@ -11,15 +11,12 @@ import java.util.Optional;
 public class BooksService {
     private final BookRepository bookRepository;
 
-
     public BooksService(BookRepository bookRepository) { this.bookRepository = bookRepository; }
-
-    private List<Book> init() { return new ArrayList<>(); }
 
     //Create
     public BookEntity createBook(Book book) {
         BookEntity bookEntity = new BookEntity();
-        bookEntity.setName(book.getName());
+        bookEntity.setTitle(book.getTitle());
         bookEntity.setIsbn(book.getIsbn());
         bookEntity.setAuthorFirstName(book.getAuthorFirstName());
         bookEntity.setAuthorLastName(book.getAuthorLastName());
@@ -28,12 +25,12 @@ public class BooksService {
     }
 
     //Get - all
-    public List<BookEntity> getAllBooks(String name) {
+    public List<BookEntity> getAllBooks(String title) {
         List<BookEntity> full = bookRepository.findAll();
-        if (name == null) { return full; }
+        if (title == null) { return full; }
         List<BookEntity> filteredList = new LinkedList<>();
         for (BookEntity b : full) {
-            if(name.equals(b.getName())){
+            if(title.equals(b.getTitle())){
                 filteredList.add(b);
             }
         }
@@ -46,12 +43,11 @@ public class BooksService {
         return book.orElse(null);
     }
 
-
     //Update
     public void updateBook(Long bookId,Book book) {
-       Optional<BookEntity> b = bookRepository.findById(bookId);
+        Optional<BookEntity> b = bookRepository.findById(bookId);
         if(b.isPresent()){
-            b.get().setName(book.getName());
+            b.get().setTitle(book.getTitle());
             b.get().setIsbn(book.getIsbn());
             b.get().setAuthorFirstName(book.getAuthorFirstName());
             b.get().setAuthorLastName(book.getAuthorLastName());
@@ -66,3 +62,4 @@ public class BooksService {
 
 
 }
+

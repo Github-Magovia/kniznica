@@ -6,17 +6,14 @@ import javax.persistence.Id;
 
 @Entity
 public class BookEntity {
-
-
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
+    private String title;
     private String isbn;
     private String authorFirstName;
     private String authorLastName;
     private Integer bookCount;
-
 
     public Long getId() {
         return id;
@@ -26,12 +23,12 @@ public class BookEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getIsbn() {
