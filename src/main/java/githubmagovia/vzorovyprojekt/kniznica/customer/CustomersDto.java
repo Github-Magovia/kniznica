@@ -1,11 +1,11 @@
 package githubmagovia.vzorovyprojekt.kniznica.customer;
 
-@Deprecated
-public class Customers {
-    private int id;
+public class CustomersDto {
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
+    private String customerName;
 
 
 
@@ -33,11 +33,19 @@ public class Customers {
         this.email = email;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 }

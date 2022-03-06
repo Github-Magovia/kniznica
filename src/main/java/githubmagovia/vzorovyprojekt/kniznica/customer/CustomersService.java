@@ -3,77 +3,56 @@ package githubmagovia.vzorovyprojekt.kniznica.customer;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomersService {
-    private int idCounter = 0;
-    private List<Customers> customers;
+    private final CustomersRepository customersRepository;
 
-    public CustomersService() {
-        customers = init();
-    }
-
-    private List<Customers> init() {
-        customers = new ArrayList<>();
-
-        Customers customer1 = new Customers();
-        customer1.setFirstName("Janko");
-        customer1.setLastName("Malý");
-        customer1.setEmail("j.maly@example.com");
-        customer1.setId(idCounter++);
-        customers.add(customer1);
-
-        Customers customer2 = new Customers();
-        customer2.setFirstName("Peter");
-        customer2.setLastName("Veľký");
-        customer2.setEmail("p.velky@example.com");
-        customer2.setId(idCounter++);
-        customers.add(customer2);
-        return customers;
+    public CustomersService(CustomersRepository customersRepository) {
+        this.customersRepository = customersRepository;
     }
 
     // Create
-    public String createCustomer(Customers customer){
-        customer.setId(idCounter++);
-        customers.add(customer);
-        return "Customer s id: " + (idCounter - 1) +" vytvorený";
+    public CustomersEntity createCustomer(CustomersDto customersDto){
+        CustomersEntity customersEntity = new CustomersEntity();
+        customersEntity.setFirstName(customersDto.getFirstName());
+        customersEntity.setLastName(customersDto.getLastName());
+        customersEntity.setEmail(customersDto.getEmail());
+        return this.customersRepository.save(customersEntity);
     }
 
     //GET - všetci
-    public List<Customers> getAllCustomers(String lastname) {
-        if(lastname == null) {
-            return customers;
+    public List<CustomersEntity> getAllCustomers(String lastname){
+        List<CustomersEntity> full = customersRepository.findAll();
+        if(lastname == null) { return full; }
+        List<CustomersEntity> filtered = new LinkedList<>();
+        for (CustomersEntity c : full){
+            if (lastname.equals(c.getLastName())) { filtered.add(c); }
         }
-        List<Customers> filteredCustomers = new ArrayList<>();
-        for (Customers customers : customers) {
-            if (customers.getLastName().equals(lastname)){
-                filteredCustomers.add(customers);
-            }
-        }
-        return filteredCustomers;
+        return filtered;
     }
 
     //GET by id
-    public Customers getCustomerById(Integer customerId) { return findCustomer(customerId); }
+    public CustomersEntity getCustomerById(Long customerId) {
+        Optional<CustomersEntity> customer = customersRepository.findById(customerId);
+        return customer.orElse(null);
+    }
 
     // UPDATE customer
-    public void updateCustomer(Integer customerId, Customers customer) {
-        Customers c = findCustomer(customerId);
-        if (c != null) {
-            c.setFirstName(customer.getFirstName());
-            c.setLastName(customer.getLastName());
-            c.setEmail(customer.getEmail());
+    public void updateCustomer(Long customerId, CustomersDto customer) {
+        Optional<CustomersEntity> c = customersRepository.findById(customerId);
+        if (c.isPresent()) {
+            c.get().setFirstName(customer.getFirstName());
+            c.get().setLastName(customer.getLastName());
+            c.get().setEmail(customer.getEmail());
         }
     }
 
     // DELETE customers
-    public void deleteCustomer(Integer customerId) { customers.remove(findCustomer(customerId)); }
-
-    private Customers findCustomer(int id) {
-        for (Customers c : customers) {
-            if (c.getId() == id) { return c; }
-        }
-        return null;
+    public void deleteCustomer(Long customerId) {
+        customersRepository.deleteById(customerId);
     }
 }
