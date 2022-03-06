@@ -1,7 +1,7 @@
 package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
 import githubmagovia.vzorovyprojekt.kniznica.customer.CustomersEntity;
-import githubmagovia.vzorovyprojekt.kniznica.book.BooksEntity;
+import githubmagovia.vzorovyprojekt.kniznica.book.BookEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
