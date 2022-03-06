@@ -1,6 +1,8 @@
 package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
-import githubmagovia.vzorovyprojekt.kniznica.BooksService;
+import githubmagovia.vzorovyprojekt.kniznica.book.BooksService;
+import githubmagovia.vzorovyprojekt.kniznica.book.BooksEntity;
+import githubmagovia.vzorovyprojekt.kniznica.customer.CustomersEntity;
 import githubmagovia.vzorovyprojekt.kniznica.customer.CustomersService;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +27,14 @@ public class BorrowingService {
     //post borrowing
     public BorrowingEntity createBorrowing(Borrowing request) {
         BorrowingEntity borrowing = new BorrowingEntity();
-        borrowing.setBook(booksService.getBook(request.getBookId()));
-        borrowing.setCustomer(customersService.getCustomerById(request.getCustomerId()));
-        return borrowingRepository.save(borrowing);
+        CustomersEntity customer = customersService.getCustomerById(request.getCustomerId());
+        BookEntity book = booksService.getBook(request.getBookId());
+        if (customer != null && book != null) {
+            borrowing.setCustomer(customer);
+            borrowing.setBook(book);
+            return borrowingRepository.save(borrowing);
+        }
+        return null;
     }
 
     //get borrowing by id
