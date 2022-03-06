@@ -1,6 +1,7 @@
 package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
 import javax.persistence.*;
+import githubmagovia.vzorovyprojekt.kniznica.customer.CustomersEntity;
 
 @Entity
 public class BorrowingEntity {

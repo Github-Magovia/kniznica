@@ -1,7 +1,7 @@
 package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
 import githubmagovia.vzorovyprojekt.kniznica.BooksService;
-import githubmagovia.vzorovyprojekt.kniznica.CustomersService;
+import githubmagovia.vzorovyprojekt.kniznica.customer.CustomersService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
