@@ -1,17 +1,20 @@
-package githubmagovia.vzorovyprojekt.kniznica;
+package githubmagovia.vzorovyprojekt.kniznica.book;
 
 public class Book {
-    private int id;
+    private Long id;
     private String name;
     private String isbn;
     private String authorFirstName;
     private String authorLastName;
     private int bookCount;
 
-    public int getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
-
+    public void setId(Long id) {
+        this.id = id;
+    }
     public void decrementId() { this.id--; }
 
     public String getName() { return name; }

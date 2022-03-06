@@ -1,5 +1,7 @@
 package githubmagovia.vzorovyprojekt.kniznica;
 
+import githubmagovia.vzorovyprojekt.kniznica.book.Book;
+import githubmagovia.vzorovyprojekt.kniznica.book.BooksService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -57,7 +59,7 @@ public class BorrowingService {
     private BorrowingBody transformToBody(Borrowing borrowing) {
         BorrowingBody body = new BorrowingBody(borrowing);
         Customers customer = customersService.getCustomerById(body.getCustomerId());
-        Book book = booksService.getBook(body.getBookId());
+        Book book = booksService.getBookById(body.getBookId());
         body.setCustomerName(customer.getFirstName() + " " + customer.getLastName());
         body.setTitle(book.getName());
         body.setAuthorName(book.getAuthorFirstName() + " " + book.getAuthorLastName());
