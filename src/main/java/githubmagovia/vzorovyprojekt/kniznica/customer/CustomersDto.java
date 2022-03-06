@@ -2,28 +2,8 @@ package githubmagovia.vzorovyprojekt.kniznica.customer;
 
 public class CustomersDto {
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
     private String customerName;
-
-
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private String email;
 
     public String getEmail() {
         return email;

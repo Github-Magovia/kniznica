@@ -2,7 +2,6 @@ package githubmagovia.vzorovyprojekt.kniznica.customer;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -16,11 +15,11 @@ public class CustomersService {
     }
 
     // Create
-    public CustomersEntity createCustomer(CustomersDto customersDto){
+    public CustomersEntity createCustomer(Customers customer){
         CustomersEntity customersEntity = new CustomersEntity();
-        customersEntity.setFirstName(customersDto.getFirstName());
-        customersEntity.setLastName(customersDto.getLastName());
-        customersEntity.setEmail(customersDto.getEmail());
+        customersEntity.setFirstName(customer.getFirstName());
+        customersEntity.setLastName(customer.getLastName());
+        customersEntity.setEmail(customer.getEmail());
         return this.customersRepository.save(customersEntity);
     }
 
@@ -42,7 +41,7 @@ public class CustomersService {
     }
 
     // UPDATE customer
-    public void updateCustomer(Long customerId, CustomersDto customer) {
+    public void updateCustomer(Long customerId, Customers customer) {
         Optional<CustomersEntity> c = customersRepository.findById(customerId);
         if (c.isPresent()) {
             c.get().setFirstName(customer.getFirstName());

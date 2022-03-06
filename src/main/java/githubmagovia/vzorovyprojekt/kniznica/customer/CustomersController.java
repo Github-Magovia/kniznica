@@ -15,7 +15,7 @@ public class CustomersController {
 
     // POST Create
     @PostMapping("/api/customers")
-    public CustomersEntity createCustomer(@RequestBody CustomersDto customer){
+    public CustomersEntity createCustomer(@RequestBody Customers customer){
         return customersService.createCustomer(customer);
     }
 
@@ -36,7 +36,7 @@ public class CustomersController {
 
     // UPDATE customer .. ok
     @PutMapping("/api/customers/{customerId}")
-    public void updateCustomer(@PathVariable Long customerId, @RequestBody CustomersDto customer) {
+    public void updateCustomer(@PathVariable Long customerId, @RequestBody Customers customer) {
         customersService.updateCustomer(customerId,customer);
     }
 
