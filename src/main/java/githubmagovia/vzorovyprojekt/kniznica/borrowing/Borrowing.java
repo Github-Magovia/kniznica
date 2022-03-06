@@ -1,33 +1,22 @@
 package githubmagovia.vzorovyprojekt.kniznica.borrowing;
 
-@Deprecated
 public class Borrowing {
-    private int id;
-    private int customerId;
-    private int bookId;
+    private Long customerId;
+    private Long bookId;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
-    public int getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
 }

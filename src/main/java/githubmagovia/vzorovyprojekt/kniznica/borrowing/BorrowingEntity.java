@@ -9,9 +9,9 @@ public class BorrowingEntity {
     @GeneratedValue
     private Long id;
 
-    @JoinColumn
-    @ManyToOne
-    private BookEntity book;
+//    @JoinColumn
+//    @ManyToOne
+//    private BookEntity book;
 
     @JoinColumn
     @ManyToOne
@@ -25,13 +25,13 @@ public class BorrowingEntity {
         this.id = id;
     }
 
-    public BookEntity getBook() {
-        return book;
-    }
-
-    public void setBook(BookEntity book) {
-        this.book = book;
-    }
+//    public BookEntity getBook() {
+//        return book;
+//    }
+//
+//    public void setBook(BookEntity book) {
+//        this.book = book;
+//    }
 
     public CustomersEntity getCustomer() {
         return customer;

@@ -23,8 +23,8 @@ public class BorrowingsController {
 
     //post borrowing
     @PostMapping("/api/borrowings")
-    public BorrowingEntity createBorrowing(@RequestBody Long bookId, Long customerId) {
-        return borrowingService.createBorrowing(bookId, customerId);
+    public BorrowingEntity createBorrowing(@RequestBody Borrowing borrowing) {
+        return borrowingService.createBorrowing(borrowing);
     }
 
     //get borrowing by id

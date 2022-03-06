@@ -23,10 +23,10 @@ public class BorrowingService {
     public List<BorrowingEntity> getBorrowings() { return borrowingRepository.findAll(); }
 
     //post borrowing
-    public BorrowingEntity createBorrowing(Long bookId, Long customerId) {
+    public BorrowingEntity createBorrowing(Borrowing request) {
         BorrowingEntity borrowing = new BorrowingEntity();
-        borrowing.setBook(booksService.getBook(bookId));
-        borrowing.setCustomer(customersService.getCustomerById(customerId));
+        borrowing.setBook(booksService.getBook(request.getBookId()));
+        borrowing.setCustomer(customersService.getCustomerById(request.getCustomerId()));
         return borrowingRepository.save(borrowing);
     }
 
