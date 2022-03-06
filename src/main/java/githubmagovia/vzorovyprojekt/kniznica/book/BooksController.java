@@ -1,6 +1,5 @@
 package githubmagovia.vzorovyprojekt.kniznica.book;
 
-import githubmagovia.vzorovyprojekt.kniznica.Customers;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
