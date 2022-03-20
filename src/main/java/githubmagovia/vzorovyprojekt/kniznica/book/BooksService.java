@@ -2,7 +2,6 @@ package githubmagovia.vzorovyprojekt.kniznica.book;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +43,7 @@ public class BooksService {
     }
 
     //Update
-    public void updateBook(Long bookId,Book book) {
+    public BookEntity updateBook(Long bookId,BookDto book) {
         Optional<BookEntity> b = bookRepository.findById(bookId);
         if(b.isPresent()){
             b.get().setTitle(book.getTitle());
@@ -52,7 +51,10 @@ public class BooksService {
             b.get().setAuthorFirstName(book.getAuthorFirstName());
             b.get().setAuthorLastName(book.getAuthorLastName());
             b.get().setBookCount(book.getBookCount());
+            bookRepository.save(b.get());
+            return b.get();
         }
+        return null;
     }
 
     //Delete

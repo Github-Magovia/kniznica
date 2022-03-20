@@ -31,13 +31,13 @@ public class BooksController {
     }
 
     //Get - by id
-    @RequestMapping ("/api/books/{bookId}")
+    @GetMapping ("/api/books/{bookId}")
     public BookDto getBookById(@PathVariable Long bookId) { return mapToDto(booksService.getBookById(bookId)); }
 
     //Update
     @PutMapping("/api/books/{id}")
-    public void updateBook(@PathVariable Long id, @RequestBody Book book) {
-        booksService.updateBook(id,book);
+    public BookDto updateBook(@PathVariable Long id, @RequestBody BookDto book) {
+        return mapToDto(booksService.updateBook(id,book));
     }
 
     //Delete
@@ -50,6 +50,8 @@ public class BooksController {
         BookDto bookDto = new BookDto();
         bookDto.setId(entity.getId());
         bookDto.setTitle(entity.getTitle());
+        bookDto.setAuthorFirstName(entity.getAuthorFirstName());
+        bookDto.setAuthorLastName(entity.getAuthorLastName());
         bookDto.setName(entity.getAuthorFirstName() + " " + entity.getAuthorLastName());
         bookDto.setIsbn(entity.getIsbn());
         bookDto.setBookCount(entity.getBookCount());
