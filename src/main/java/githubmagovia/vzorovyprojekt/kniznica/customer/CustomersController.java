@@ -15,7 +15,7 @@ public class CustomersController {
 
     // POST Create
     @PostMapping("/api/customers")
-    public CustomersEntity createCustomer(@RequestBody Customers customer){
+    public CustomersEntity createCustomer(@RequestBody CustomersDto customer){
         return customersService.createCustomer(customer);
     }
 
@@ -29,15 +29,15 @@ public class CustomersController {
     }
 
     //GET - podla idcka
-    @RequestMapping("/api/customers/{customerId}")
+    @GetMapping("/api/customers/{customerId}")
     public CustomersDto getCustomerById(@PathVariable Long customerId) {
         return mapToDto(customersService.getCustomerById(customerId));
     }
 
     // UPDATE customer .. ok
     @PutMapping("/api/customers/{customerId}")
-    public void updateCustomer(@PathVariable Long customerId, @RequestBody Customers customer) {
-        customersService.updateCustomer(customerId,customer);
+    public CustomersDto updateCustomer(@PathVariable Long customerId, @RequestBody CustomersDto customer) {
+       return mapToDto(customersService.updateCustomer(customerId,customer));
     }
 
     // DELETE customers .. ok
@@ -49,8 +49,10 @@ public class CustomersController {
     private CustomersDto mapToDto(CustomersEntity entity){
         CustomersDto customersDto = new CustomersDto();
         customersDto.setId(entity.getId());
+        customersDto.setFirstName(entity.getFirstName());
+        customersDto.setLastName(entity.getLastName());
         customersDto.setCustomerName(entity.getFirstName() + " " + entity.getLastName());
-        customersDto.setEmail(entity.getEmail());
+        customersDto.setContact(entity.getContact());
         return customersDto;
     }
 }

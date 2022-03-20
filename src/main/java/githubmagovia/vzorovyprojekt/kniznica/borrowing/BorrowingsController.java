@@ -24,7 +24,7 @@ public class BorrowingsController {
 
     //post borrowing
     @PostMapping("/api/borrowings")
-    public BorrowingEntity createBorrowing(@RequestBody Borrowing borrowing) {
+    public BorrowingEntity createBorrowing(@RequestBody BorrowingDto borrowing) {
         return borrowingService.createBorrowing(borrowing);
     }
 

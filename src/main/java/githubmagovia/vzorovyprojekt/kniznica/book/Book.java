@@ -1,5 +1,6 @@
 package githubmagovia.vzorovyprojekt.kniznica.book;
 
+@Deprecated
 public class Book {
     private String title;
     private String isbn;
