@@ -15,7 +15,7 @@ public class CustomersService {
     }
 
     // Create
-    public CustomersEntity createCustomer(Customers customer){
+    public CustomersEntity createCustomer(CustomersDto customer){
         CustomersEntity customersEntity = new CustomersEntity();
         customersEntity.setFirstName(customer.getFirstName());
         customersEntity.setLastName(customer.getLastName());
@@ -41,13 +41,15 @@ public class CustomersService {
     }
 
     // UPDATE customer
-    public void updateCustomer(Long customerId, Customers customer) {
+    public CustomersEntity updateCustomer(Long customerId, CustomersDto customer) {
         Optional<CustomersEntity> c = customersRepository.findById(customerId);
         if (c.isPresent()) {
             c.get().setFirstName(customer.getFirstName());
             c.get().setLastName(customer.getLastName());
             c.get().setEmail(customer.getEmail());
+            return customersRepository.save(c.get());
         }
+        return null;
     }
 
     // DELETE customers
