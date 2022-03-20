@@ -25,7 +25,7 @@ public class BorrowingService {
     public List<BorrowingEntity> getBorrowings() { return borrowingRepository.findAll(); }
 
     //post borrowing
-    public BorrowingEntity createBorrowing(Borrowing request) {
+    public BorrowingEntity createBorrowing(BorrowingDto request) {
         BorrowingEntity borrowing = new BorrowingEntity();
         CustomersEntity customer = customersService.getCustomerById(request.getCustomerId());
         BookEntity book = booksService.getBookById(request.getBookId());
