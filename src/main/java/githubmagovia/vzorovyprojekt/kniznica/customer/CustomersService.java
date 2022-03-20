@@ -19,7 +19,7 @@ public class CustomersService {
         CustomersEntity customersEntity = new CustomersEntity();
         customersEntity.setFirstName(customer.getFirstName());
         customersEntity.setLastName(customer.getLastName());
-        customersEntity.setEmail(customer.getEmail());
+        customersEntity.setContact(customer.getContact());
         return this.customersRepository.save(customersEntity);
     }
 
@@ -46,7 +46,7 @@ public class CustomersService {
         if (c.isPresent()) {
             c.get().setFirstName(customer.getFirstName());
             c.get().setLastName(customer.getLastName());
-            c.get().setEmail(customer.getEmail());
+            c.get().setContact(customer.getContact());
             return customersRepository.save(c.get());
         }
         return null;

@@ -5,14 +5,14 @@ public class CustomersDto {
     private String firstName;
     private String lastName;
     private String customerName;
-    private String email;
+    private String contact;
 
-    public String getEmail() {
-        return email;
+    public String getContact() {
+        return contact;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public Long getId() {

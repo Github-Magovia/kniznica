@@ -52,7 +52,7 @@ public class CustomersController {
         customersDto.setFirstName(entity.getFirstName());
         customersDto.setLastName(entity.getLastName());
         customersDto.setCustomerName(entity.getFirstName() + " " + entity.getLastName());
-        customersDto.setEmail(entity.getEmail());
+        customersDto.setContact(entity.getContact());
         return customersDto;
     }
 }
