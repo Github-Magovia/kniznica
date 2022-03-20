@@ -13,7 +13,7 @@ public class BooksService {
     public BooksService(BookRepository bookRepository) { this.bookRepository = bookRepository; }
 
     //Create
-    public BookEntity createBook(Book book) {
+    public BookEntity createBook(BookDto book) {
         BookEntity bookEntity = new BookEntity();
         bookEntity.setTitle(book.getTitle());
         bookEntity.setIsbn(book.getIsbn());
@@ -51,8 +51,7 @@ public class BooksService {
             b.get().setAuthorFirstName(book.getAuthorFirstName());
             b.get().setAuthorLastName(book.getAuthorLastName());
             b.get().setBookCount(book.getBookCount());
-            bookRepository.save(b.get());
-            return b.get();
+            return bookRepository.save(b.get());
         }
         return null;
     }
