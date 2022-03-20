@@ -49,6 +49,8 @@ public class CustomersController {
     private CustomersDto mapToDto(CustomersEntity entity){
         CustomersDto customersDto = new CustomersDto();
         customersDto.setId(entity.getId());
+        customersDto.setFirstName(entity.getFirstName());
+        customersDto.setLastName(entity.getLastName());
         customersDto.setCustomerName(entity.getFirstName() + " " + entity.getLastName());
         customersDto.setEmail(entity.getEmail());
         return customersDto;
