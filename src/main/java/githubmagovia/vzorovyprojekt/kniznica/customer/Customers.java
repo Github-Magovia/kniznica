@@ -1,5 +1,6 @@
 package githubmagovia.vzorovyprojekt.kniznica.customer;
 
+@Deprecated
 public class Customers {
     private String firstName;
     private String lastName;
